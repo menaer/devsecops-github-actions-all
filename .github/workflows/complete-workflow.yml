@@ -31,13 +31,14 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
   zap_scan:
     runs-on: ubuntu-latest
-    needs: security
+    #needs: security
     name: Run DAST scan on the web application
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: master
+        continue-on-error: true
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.6.1
         with:
